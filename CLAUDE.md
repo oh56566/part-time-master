@@ -19,14 +19,17 @@ PartTimeMaster/
 ├── PartTimeMaster/
 │   ├── PartTimeMasterApp.swift  # @main 앱 진입점 (SwiftData container)
 │   ├── ContentView.swift        # TabView 3탭 (대시보드/근무기록/설정)
+│   ├── Constants.swift          # 앱 상수 (AppConstants, StorageKey)
 │   ├── Assets.xcassets/         # 앱 아이콘, 색상 등 에셋
+│   ├── Extensions/
+│   │   └── Int+Currency.swift   # Int 통화 형식 extension (.currencyText)
 │   ├── Models/
-│   │   └── WorkLog.swift        # SwiftData 근무 기록 모델
+│   │   └── WorkLog.swift        # SwiftData 근무 기록 모델 + 계산 static 메서드
 │   └── Views/
 │       ├── DashboardView.swift      # 대시보드 (월간 요약 + 최근 기록)
-│       ├── WorkLogFormView.swift    # 근무 추가/수정 폼
+│       ├── WorkLogFormView.swift    # 근무 추가/수정 폼 (유효성 검사 포함)
 │       ├── WorkLogListView.swift    # 월별 근무 기록 리스트
-│       └── SettingsView.swift       # 시급/급여일 설정
+│       └── SettingsView.swift       # 시급/급여일 설정 (동적 버전 표시)
 └── CLAUDE.md
 ```
 

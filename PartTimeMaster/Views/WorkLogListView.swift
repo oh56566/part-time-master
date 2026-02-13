@@ -19,7 +19,7 @@ struct WorkLogListView: View {
     private var totalPay: Int { filteredLogs.reduce(0) { $0 + $1.dailyPay } }
 
     private var monthTitle: String {
-        displayedMonth.formatted(.dateTime.year().month())
+        displayedMonth.formatted(.dateTime.year().month().locale(Locale(identifier: "ko_KR")))
     }
 
     var body: some View {
@@ -141,7 +141,7 @@ private struct LogRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(log.date.formatted(.dateTime.month(.defaultDigits).day()))
+                Text(log.date.formatted(.dateTime.month(.defaultDigits).day().weekday(.abbreviated).locale(Locale(identifier: "ko_KR"))))
                     .font(.subheadline)
                     .fontWeight(.medium)
                 Text("\(log.startTime.formatted(date: .omitted, time: .shortened)) ~ \(log.endTime.formatted(date: .omitted, time: .shortened))")

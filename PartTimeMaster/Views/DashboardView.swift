@@ -142,7 +142,7 @@ private struct RecentLogRow: View {
     let log: WorkLog
 
     private var dateText: String {
-        log.date.formatted(.dateTime.month().day().weekday())
+        log.date.formatted(.dateTime.month().day().weekday(.abbreviated).locale(Locale(identifier: "ko_KR")))
     }
 
     private var timeText: String {
