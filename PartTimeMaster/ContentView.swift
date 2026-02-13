@@ -1,24 +1,25 @@
-//
-//  ContentView.swift
-//  PartTimeMaster
-//
-//  Created by 오대현 on 2/13/26.
-//
-
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            Tab("대시보드", systemImage: "house") {
+                DashboardView()
+            }
+
+            Tab("근무기록", systemImage: "list.clipboard") {
+                WorkLogListView()
+            }
+
+            Tab("설정", systemImage: "gearshape") {
+                SettingsView()
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: WorkLog.self, inMemory: true)
 }

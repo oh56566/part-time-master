@@ -1,11 +1,5 @@
-//
-//  PartTimeMasterApp.swift
-//  PartTimeMaster
-//
-//  Created by 오대현 on 2/13/26.
-//
-
 import SwiftUI
+import SwiftData
 
 @main
 struct PartTimeMasterApp: App {
@@ -13,5 +7,6 @@ struct PartTimeMasterApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: WorkLog.self)
     }
 }
