@@ -20,9 +20,14 @@ struct WorkLogFormView: View {
 
     private var isEditMode: Bool { existingLog != nil }
 
-    /// 저장 가능 여부
+    /// 자정 넘김 근무 여부
+    private var isOvernightShift: Bool {
+        endTime <= startTime
+    }
+
+    /// 저장 가능 여부 (출퇴근 시간이 동일하지만 않으면 OK)
     private var canSave: Bool {
-        endTime > startTime && hourlyWage > 0
+        endTime != startTime && hourlyWage > 0
     }
 
     /// 실시간 계산: 근무시간
@@ -104,6 +109,15 @@ struct WorkLogFormView: View {
     private var previewSection: some View {
         Section("계산 미리보기") {
             if canSave {
+                if isOvernightShift {
+                    HStack {
+                        Image(systemName: "moon.fill")
+                            .foregroundStyle(.indigo)
+                        Text("자정 넘김 근무")
+                            .font(.caption)
+                            .foregroundStyle(.indigo)
+                    }
+                }
                 HStack {
                     Text("근무시간")
                     Spacer()
@@ -118,7 +132,7 @@ struct WorkLogFormView: View {
                         .foregroundStyle(.green)
                 }
             } else {
-                Text("퇴근 시간이 출근 시간보다 늦어야 하고, 시급은 0보다 커야 합니다")
+                Text("출퇴근 시간이 같거나, 시급이 0원입니다")
                     .font(.caption)
                     .foregroundStyle(.red)
             }

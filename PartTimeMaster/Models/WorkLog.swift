@@ -24,9 +24,13 @@ final class WorkLog {
         Self.calculatePay(hours: workedHours, wage: hourlyWage)
     }
 
-    /// 근무시간 계산 (저장 전 미리보기용)
+    /// 근무시간 계산 (저장 전 미리보기용, 자정 넘김 지원)
     static func calculateHours(start: Date, end: Date, breakMinutes: Double) -> Double {
-        let interval = end.timeIntervalSince(start)
+        var interval = end.timeIntervalSince(start)
+        // 퇴근이 출근보다 이르면 자정을 넘긴 것으로 처리 (+24시간)
+        if interval <= 0 {
+            interval += 24 * 3600
+        }
         return max(interval / 3600.0 - breakMinutes / 60.0, 0)
     }
 
