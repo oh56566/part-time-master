@@ -262,7 +262,7 @@ private struct DayCell: View {
             if hasLog, let hours = hoursText {
                 Text("\(hours)h")
                     .font(.system(size: 9))
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.black)
             } else {
                 // 높이 유지를 위한 빈 텍스트
                 Text(" ")
