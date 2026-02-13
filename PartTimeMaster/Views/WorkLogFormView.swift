@@ -63,6 +63,7 @@ struct WorkLogFormView: View {
             }
             .onAppear { loadExistingData() }
         }
+        .environment(\.locale, Locale(identifier: "ko_KR"))
     }
 
     // MARK: - 날짜
